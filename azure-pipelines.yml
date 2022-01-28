@@ -1,0 +1,25 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Invoke-Sqlcmd 
+         -ConnectionString Data "Source=PSGBSSC2SQL007\UAT;Initial Catalog=R3_UAT;Integrated Security=True;ApplicationIntent=ReadOnly"
+         -Query "SELECT top (10) * FROM ecoresproduct"
