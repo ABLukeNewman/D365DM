@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -15,5 +16,12 @@ steps:
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      #Writes a warning
+      Write-Host "##vso[task.LogIssue type=warning;]This is a warning"
+      # Writes an error to build summary and to log in red text
+      Write-Host  "##vso[task.LogIssue type=error;]This is the error"
+      exit 1
