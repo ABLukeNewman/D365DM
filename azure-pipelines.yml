@@ -23,4 +23,3 @@ steps:
       Invoke-Sqlcmd 
          -ConnectionString Data "Source=PSGBSSC2SQL007\UAT;Initial Catalog=R3_UAT;Integrated Security=True;ApplicationIntent=ReadOnly"
          -Query "SELECT top (10) * FROM ecoresproduct"
-         -Variable @("password=Adaytoosoon!01332","username=Admin_lnewman")
