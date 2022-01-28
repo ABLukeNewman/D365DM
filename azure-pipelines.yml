@@ -20,8 +20,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      #Writes a warning
-      Write-Host "##vso[task.LogIssue type=warning;]This is a warning"
-      # Writes an error to build summary and to log in red text
-      Write-Host  "##vso[task.LogIssue type=error;]This is the error"
-      exit 1
+      $return = Invoke-Sqlcmd 
+         -ConnectionString Data "Source=PSGBSSC2SQL007\UAT;Initial Catalog=R3_UAT;Integrated Security=True;ApplicationIntent=ReadOnly"
+         -Query "SELECT top (10) * FROM ecoresproduct"
+         -Variable @("password=Adaytoosoon!01332","username=Admin_lnewman")
